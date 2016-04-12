@@ -61,32 +61,43 @@ def drawMain():
 	pygame.draw.line(DISPSURF, BLACK, (175, 282), (194, 282), 1)
 	pygame.draw.line(DISPSURF, BLACK, (175, 294), (194, 294), 1)
 
-FPS = 30 #frames per second
-fpsClock = pygame.time.Clock()
+def main():
+	FPS = 30 #frames per second
+	fpsClock = pygame.time.Clock()
 
-person = pygame.image.load('player.png')
-personx = 10
-persony = 10
-direction = 'right'
+	person = pygame.image.load('player.png')
+	personx = 200
+	persony = 250
+	direction = 'right'
 
-while True: # the main game loop
-	drawMain()
-	DISPSURF.blit(person, (personx, persony))
+	while True: # the main game loop
+		drawMain()
+		DISPSURF.blit(person, (personx, persony))
 	
-	for event in pygame.event.get():
-		if event.type == QUIT:
-			pygame.quit()
-			sys.exit()
+		for event in pygame.event.get():
+			if event.type == QUIT:
+				pygame.quit()
+				sys.exit()
     
-	keys=pygame.key.get_pressed()
-	if keys[K_RIGHT]: 
-		personx += 5
-	if keys[K_LEFT]: 
-		personx -= 5
-	if keys[K_DOWN]: 
-		persony += 5
-	if keys[K_UP]: 
-		persony -= 5    	
+		keys=pygame.key.get_pressed()
+		if keys[K_RIGHT]: 
+			personx += 5
+			if personx == 395:
+				personx -= 5
+		if keys[K_LEFT]: 
+			personx -= 5
+			if personx == 0:
+				personx += 5
+		if keys[K_DOWN]: 
+			persony += 5
+			if persony == 295:
+				persony -= 5
+		if keys[K_UP]: 
+			persony -= 5
+			if persony == 235:
+				persony += 5   	
 		
-	pygame.display.flip()
-	fpsClock.tick(FPS)
+		pygame.display.flip()
+		fpsClock.tick(FPS)
+
+main()
