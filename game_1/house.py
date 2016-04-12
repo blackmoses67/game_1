@@ -82,20 +82,24 @@ def main():
 		keys=pygame.key.get_pressed()
 		if keys[K_RIGHT]: 
 			personx += 5
+			print personx, persony 
 			if personx == 395:
 				personx -= 5
 		if keys[K_LEFT]: 
 			personx -= 5
+			print personx, persony 
 			if personx == 0:
 				personx += 5
 		if keys[K_DOWN]: 
 			persony += 5
+			print personx, persony 
 			if persony == 295:
-				persony -= 5
+				persony -= 5 
 		if keys[K_UP]: 
 			persony -= 5
+			print personx, persony 
 			if persony == 235:
-				persony += 5   	
+				persony += 5 	
 		
 		pygame.display.flip()
 		fpsClock.tick(FPS)
