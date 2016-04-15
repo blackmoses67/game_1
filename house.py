@@ -61,17 +61,53 @@ def drawMain():
 	pygame.draw.line(DISPSURF, BLACK, (175, 282), (194, 282), 1)
 	pygame.draw.line(DISPSURF, BLACK, (175, 294), (194, 294), 1)
 
-def main():
+def randperson(FPS, fpsClock, randguy):
+	FPS = 30 #frames per second
+	fpsClock = pygame.time.Clock()
+
+	person = pygame.image.load(randguy)
+	personx = 200
+	persony = 250
+	direction = 'right'
+
+	while True:
+		DISPSURF.blit(person, (personx, persony))
+	
+		for event in pygame.event.get():
+			if event.type == QUIT:
+				pygame.quit()
+				sys.exit()
+    
+		keys=pygame.key.get_pressed()
+		if direction == 'right': 
+			personx += 5
+			if personx == 395:
+				direction = 'down'
+		if direction == 'left': 
+			personx -= 5 
+			if personx == 0:
+				direction = 'up'
+		if direction == 'down': 
+			persony += 5
+			if persony == 295:
+				direction = 'left' 
+		if direction == 'up': 
+			persony -= 5 
+			if persony == 235:
+				direction = 'right' 	
+		
+		pygame.display.flip()
+		fpsClock.tick(FPS)
+
+def player(FPS, fpsClock):
 	FPS = 30 #frames per second
 	fpsClock = pygame.time.Clock()
 
 	person = pygame.image.load('player.png')
 	personx = 200
 	persony = 250
-	direction = 'right'
 
-	while True: # the main game loop
-		drawMain()
+	while True:
 		DISPSURF.blit(person, (personx, persony))
 	
 		for event in pygame.event.get():
@@ -101,6 +137,23 @@ def main():
 			if persony == 235:
 				persony += 5 	
 		
+		pygame.display.flip()
+		fpsClock.tick(FPS)
+
+def main():
+	FPS = 30 #frames per second
+	fpsClock = pygame.time.Clock()
+
+	"""person = pygame.image.load('player.png')
+	personx = 200
+	persony = 250
+	direction = 'right'"""
+
+	while True: # the main game loop
+		drawMain()
+		player(FPS, fpsClock)
+		randperson(FPS, fpsClock, 'guy1.png')
+
 		pygame.display.flip()
 		fpsClock.tick(FPS)
 
