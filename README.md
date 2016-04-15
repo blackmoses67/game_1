@@ -1,2 +1,2 @@
 # game_1
-simple house program in python
+house game in python
