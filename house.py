@@ -61,11 +61,12 @@ def drawMain():
 	pygame.draw.line(DISPSURF, BLACK, (175, 282), (194, 282), 1)
 	pygame.draw.line(DISPSURF, BLACK, (175, 294), (194, 294), 1)
 
-def randperson(FPS, fpsClock, randguy):
+def randperson(FPS, fpsClock):
+	"""
 	FPS = 30 #frames per second
 	fpsClock = pygame.time.Clock()
-
-	person = pygame.image.load(randguy)
+"""
+	person = pygame.image.load('guy1.png')
 	personx = 200
 	persony = 250
 	direction = 'right'
@@ -96,13 +97,14 @@ def randperson(FPS, fpsClock, randguy):
 			if persony == 235:
 				direction = 'right' 	
 		
-		pygame.display.flip()
+		pygame.display.update()
 		fpsClock.tick(FPS)
 
 def player(FPS, fpsClock):
+	"""
 	FPS = 30 #frames per second
 	fpsClock = pygame.time.Clock()
-
+"""
 	person = pygame.image.load('player.png')
 	personx = 200
 	persony = 250
@@ -137,7 +139,7 @@ def player(FPS, fpsClock):
 			if persony == 235:
 				persony += 5 	
 		
-		pygame.display.flip()
+		pygame.display.update()
 		fpsClock.tick(FPS)
 
 def main():
@@ -152,7 +154,7 @@ def main():
 	while True: # the main game loop
 		drawMain()
 		player(FPS, fpsClock)
-		randperson(FPS, fpsClock, 'guy1.png')
+		randperson(FPS, fpsClock)
 
 		pygame.display.flip()
 		fpsClock.tick(FPS)
