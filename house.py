@@ -61,45 +61,50 @@ def drawMain():
 	pygame.draw.line(DISPSURF, BLACK, (175, 282), (194, 282), 1)
 	pygame.draw.line(DISPSURF, BLACK, (175, 294), (194, 294), 1)
 
-def randperson(FPS, fpsClock, randguy):
+def randperson():
 	FPS = 30 #frames per second
 	fpsClock = pygame.time.Clock()
 
-	person = pygame.image.load(randguy)
+	DISPLAYSURF = pygame.display.set_mode((400, 300), 0, 32)
+	pygame.display.set_caption('randguy')
+
+	WHITE = (255, 255, 255)
+	person = pygame.image.load('guy3.png')
 	personx = 200
 	persony = 250
 	direction = 'right'
 
-	while True:
-		DISPSURF.blit(person, (personx, persony))
-	
+	while True: # the main game loop
+		DISPLAYSURF.fill(WHITE)	
+    
+		if direction == 'right': 
+			personx += 2
+			if personx >= 390:
+				direction = 'down'
+		if direction == 'down': 
+			persony += 2
+			if persony >= 290:
+				direction = 'left' 
+		if direction == 'left': 
+			personx -= 2 
+			if personx <= 5:
+				direction = 'up'
+		if direction == 'up': 
+			persony -= 2 
+			if persony <= 230:
+				direction = 'right' 
+
+		DISPLAYSURF.blit(person, (personx, persony)) 	
+		
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				pygame.quit()
 				sys.exit()
-    
-		keys=pygame.key.get_pressed()
-		if direction == 'right': 
-			personx += 5
-			if personx == 395:
-				direction = 'down'
-		if direction == 'left': 
-			personx -= 5 
-			if personx == 0:
-				direction = 'up'
-		if direction == 'down': 
-			persony += 5
-			if persony == 295:
-				direction = 'left' 
-		if direction == 'up': 
-			persony -= 5 
-			if persony == 235:
-				direction = 'right' 	
-		
+
 		pygame.display.flip()
 		fpsClock.tick(FPS)
 
-def player(FPS, fpsClock):
+def player():
 	FPS = 30 #frames per second
 	fpsClock = pygame.time.Clock()
 
@@ -151,8 +156,8 @@ def main():
 
 	while True: # the main game loop
 		drawMain()
-		player(FPS, fpsClock)
-		randperson(FPS, fpsClock, 'guy1.png')
+		player()
+		randperson()
 
 		pygame.display.flip()
 		fpsClock.tick(FPS)
