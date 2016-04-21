@@ -1,4 +1,4 @@
-# cat moving around
+#person.py
 
 import pygame, sys
 from pygame.locals import *
@@ -9,7 +9,7 @@ FPS = 60 #frames per second
 fpsClock = pygame.time.Clock()
 
 DISPLAYSURF = pygame.display.set_mode((600, 400), 0, 32)
-pygame.display.set_caption('Cat moves')
+pygame.display.set_caption('person')
 
 WHITE = (255, 255, 255)
 person = pygame.image.load('player.png')
