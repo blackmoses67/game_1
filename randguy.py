@@ -1,7 +1,7 @@
 #randguy.py
 #, 0, 32
 import pygame, sys
-import
+import random
 import time
 from pygame.locals import *
 

@@ -1,8 +1,6 @@
 #randguy.py
 #, 0, 32
 import pygame, sys
-import
-import time
 from pygame.locals import *
 
 pygame.init()
